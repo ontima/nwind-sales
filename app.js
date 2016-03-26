@@ -15,7 +15,7 @@ module.exports = app;
 app.use('/client', express.static(path.join(__dirname, 'client')));
 app.use('/npm', express.static(path.join(__dirname, 'node_modules')));
 
-app.use('/api/employees', require('./routes/employees'));
+
 app.engine('html', swig.renderFile);
 app.set('view engine', 'html');
 app.use(bodyParser.json());
@@ -23,6 +23,8 @@ app.use(bodyParser.json());
 app.get('/', function(req, res){
 	res.render('index');
 });
+
+app.use('/api/employees', require('./routes/employees'));
 
 // var indexPath = path.join(__dirname, 'views/index.html');
 // console.log(indexPath);

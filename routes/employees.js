@@ -4,8 +4,10 @@ var Employee = require('../db').models.Employee;
 module.exports = app;
 
 app.get('/', function(req, res, next){
-	Employee.findAll({})
+	console.log("inside router get");
+	Employee.find()
 	.then(function(employees){
+		console.log("router get: ", employees);
 		res.send(employees);
 	}, next);
 });
