@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel='stylesheet' href='/npm/bootstrap/dist/css/bootstrap.css'></script>
+    <script src='/npm/angular/angular.js'></script>
+    <script src='/client/javascript/app.js'></script>
+    <script src='/client/javascript/employees_ctrl.js'></script>
+    <title>Northwind Sales</title>
+
+  </head>
+  <body ng-app='salesApp'>
+
+    <div class="container-fluid" ng-controller='EmployeesCtrl'>
+	<div class="row">
+		<div class="col-md-12" >
+			<h2>
+				Add a Sales Person
+			</h2>
+			
+<!-- 			<p>
+				<a class="btn" href="#"></a>
+			</p> -->
+			<form role="form">
+				<div class="form-group">
+					 
+					<label>
+						Name
+					</label>
+					<input type="text" class="form-control" ng-model='employee.name' >
+				</div>
+			<div class="btn-group">
+
+			<button type="button" class="btn btn-default">
+				North
+			</button> 
+			<button type="button" class="btn btn-default">
+				South
+			</button> 
+			<button type="button" class="btn btn-default">
+				East
+			</button> 
+			<button type="button" class="btn btn-default">
+				West
+			</button>
+				 
+			</div>
+		</div>
+		<br>
+			<button type="submit" class="btn btn-default" ng-click='add()'>
+				Submit
+			</button>
+		</form>
+	</div>
+
+</div>
+
+  </body>
+</html>
