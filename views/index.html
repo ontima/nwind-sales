@@ -8,14 +8,18 @@
     <script src='/npm/angular/angular.js'></script>
     <script src='/client/javascript/app.js'></script>
     <script src='/client/javascript/employees_ctrl.js'></script>
+    <script src='/client/javascript/employees_factory.js'></script>
     <title>Northwind Sales</title>
 
   </head>
   <body ng-app='salesApp'>
 
   <div class="container-fluid" ng-controller='EmployeesCtrl'>
+  	   <div ng-show="displayError" class="alert alert-danger">
+          {{ errorMessage }}
+        </div>
 	<div class="row">
-		<div class="col-md-12" >
+		<div class="col-md-4" >
 			<h2>
 				Add a Sales Person
 			</h2>
@@ -26,45 +30,25 @@
 						Name
 					</label>
 					<input type="text" class="form-control" ng-model='employee.name' >
+					<br>
+					<span ng-repeat="(region, active) in regions"><button class="btn" ng-class="{'btn-primary': active,'btn-secondary': !active}" ng-click="toggleRegion(region)">{{ region }} </button></span>
+					<br>
+					<button type="submit" class="btn btn-default" ng-click='addEmployee()'>Submit</button>
 				</div>
-				<div class="btn-group">
 
-					<button type="button" class="btn btn-default">
-						North
-					</button> 
-					<button type="button" class="btn btn-default">
-						South
-					</button> 
-					<button type="button" class="btn btn-default">
-						East
-					</button> 
-					<button type="button" class="btn btn-default">
-						West
-					</button>
-				</div>	 
-				<br>
-				<button type="submit" class="btn btn-default" ng-click='addEmployee()'>
-					Submit
-				</button>
 			</form>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-md-12" >
-			<table class="table">
-				<thead>
-					<tr>
-						<th>Name</th>
-						<th>Regions</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr ng-repeat="employee in employees">
-						<td> {{ employee.name }} </td>
-						<td> {{ employee.regions.join(', ') }} </td>
-					</tr>
-				</tbody>
-			</table>
+	<div class="col-md-4" ng-repeat="employee in employees">
+		<div class="panel panel-default" >
+			<div class='panel-heading'> {{ employee.name }}
+				<div class='pull-right'><button class='btn-xs btn-danger' ng-hide="employee.regions.length >0" ng-click='deleteEmployee(employee._id)'>Delete</button></div>
+			</div>
+			<div class='panel-body'>
+				<div class='col-xs-3' ng-repeat='(region, active) in regions' class='list-group-item'>
+					<button class='btn-xs' ng-class="{'btn-primary': isActive(employee, region)}" ng-click='updateRegion(employee, region)'> {{ region }} </button>
+			</div>
+
 		</div>
 	</div>	
   </div>
