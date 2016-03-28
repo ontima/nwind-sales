@@ -8,7 +8,6 @@ salesApp.factory('EmployeesFactory', function($http){
 				name: name, 
 				regions: regions
 			}
-			console.log("inside factory add: ", newEmployee);
 			return $http.post('/api/employees', newEmployee);
 		},
 		deleteEmployee: function(id){

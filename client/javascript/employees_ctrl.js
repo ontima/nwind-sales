@@ -6,10 +6,8 @@ salesApp.controller('EmployeesCtrl', function($scope, $http, $q, EmployeesFactor
 	getEmployees = function() {
 		$scope.displayError = false;
 		$scope.regions = {North: false, South: false, East: false, West: false};
-		//$http.get('/api/employees')
 		EmployeesFactory.getEmployees()
 			.then(function(result){
-				console.log("showing employees: ", result.data);
 				$scope.employees = result.data;
 			});
 	};
@@ -30,7 +28,6 @@ salesApp.controller('EmployeesCtrl', function($scope, $http, $q, EmployeesFactor
 	}
 
 	$scope.addEmployee = function() {
-		console.log("inside controller add: ", getSelectedRegions());
 		var selectedRegions = getSelectedRegions();
 		if ($scope.employee === undefined) {
 			setErrorMessage("You must supply a name");
@@ -46,7 +43,6 @@ salesApp.controller('EmployeesCtrl', function($scope, $http, $q, EmployeesFactor
 		}
 
 		EmployeesFactory.addEmployee($scope.employee.name, selectedRegions)
-		//$http.post('/api/employees', $scope.employee)
 			.then(function(){
 				getEmployees();
 			});
@@ -61,7 +57,6 @@ salesApp.controller('EmployeesCtrl', function($scope, $http, $q, EmployeesFactor
 	};
 	
 	$scope.deleteEmployee = function(id) {
-		console.log("inside deleteEmployee: ", id);
 		EmployeesFactory.deleteEmployee(id)
 		.then(function(){
 			getEmployees();
@@ -69,9 +64,6 @@ salesApp.controller('EmployeesCtrl', function($scope, $http, $q, EmployeesFactor
 	};
 
 	$scope.updateRegion = function(employee, region) {
-		console.log("insdie update region: ", employee);
-		console.log("insdie update region: ", region);
-		
 		var newRegions = employee.regions;
 		var index = newRegions.indexOf(region);
 		if (index > -1) {
@@ -84,7 +76,6 @@ salesApp.controller('EmployeesCtrl', function($scope, $http, $q, EmployeesFactor
 			return;
 		}
 
-		//$scope.regions[region] = !$scope.regions[region];
 		EmployeesFactory.updateRegion(employee._id, newRegions)
 		.then(function(){
 			getEmployees();
@@ -93,4 +84,4 @@ salesApp.controller('EmployeesCtrl', function($scope, $http, $q, EmployeesFactor
 
 	getEmployees();
 
-}) //end for controller
+}); 

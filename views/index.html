@@ -40,7 +40,7 @@
 		</div>
 	</div>
 	<div class="col-md-4" ng-repeat="employee in employees">
-		<div class="panel panel-default" >
+		<div class="panel panel-default" ng-class="{ 'panel-danger': employee.regions.length === 0, 'panel-success' : employee.regions.length >= 3 }">
 			<div class='panel-heading'> {{ employee.name }}
 				<div class='pull-right'><button class='btn-xs btn-danger' ng-hide="employee.regions.length >0" ng-click='deleteEmployee(employee._id)'>Delete</button></div>
 			</div>

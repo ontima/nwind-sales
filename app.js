@@ -18,7 +18,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/api/employees', require('./routes/employees'));
 
 var indexPath = path.join(__dirname, 'views/index.html');
-console.log(indexPath);
 app.get('/*', function(req, res){
   res.sendFile(indexPath);
 });
