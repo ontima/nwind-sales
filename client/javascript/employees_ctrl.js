@@ -1,18 +1,20 @@
 
-salesApp.controller('EmployeesCtrl', function($scope, $http, $q, EmployeesFactory){
+salesApp.controller('EmployeesCtrl', function($scope, EmployeesFactory){
 
-	$scope.regions = {North: false, South: false, East: false, West: false};
+  var resetRegions = function(){
+	  $scope.regions = {North: false, South: false, East: false, West: false};
+  };
 
-	getEmployees = function() {
+	var getEmployees = function() {
 		$scope.displayError = false;
-		$scope.regions = {North: false, South: false, East: false, West: false};
+    resetRegions();
 		EmployeesFactory.getEmployees()
 			.then(function(result){
 				$scope.employees = result.data;
 			});
 	};
 
-	getSelectedRegions = function() {
+	var getSelectedRegions = function() {
 		var selected = [];
 		for (var region in $scope.regions) {
 			if ($scope.regions[region] === true) {
@@ -22,10 +24,10 @@ salesApp.controller('EmployeesCtrl', function($scope, $http, $q, EmployeesFactor
 		return selected;
 	};
 
-	setErrorMessage = function(msg) {
+	var setErrorMessage = function(msg) {
 		$scope.errorMessage = msg;
 		$scope.displayError = true;
-	}
+	};
 
 	$scope.addEmployee = function() {
 		var selectedRegions = getSelectedRegions();

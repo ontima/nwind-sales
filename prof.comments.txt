@@ -1,0 +1,3 @@
+- great work
+- nice simple code - works well
+- maybe you can disable buttons if the new sales person is not valid? 

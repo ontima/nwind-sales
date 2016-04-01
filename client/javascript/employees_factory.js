@@ -1,3 +1,4 @@
+//how about EmployeeFactory as a name?
 salesApp.factory('EmployeesFactory', function($http){
 	return {
 		getEmployees: function(){
